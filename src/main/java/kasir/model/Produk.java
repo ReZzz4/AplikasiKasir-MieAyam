@@ -1,4 +1,3 @@
-// File: src/main/java/kasir/model/Produk.java
 package kasir.model;
 
 public class Produk {

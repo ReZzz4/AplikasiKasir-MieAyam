@@ -1,4 +1,3 @@
-// File: src/main/java/kasir/controller/PembayaranController.java
 package kasir.controller;
 
 import java.io.IOException;

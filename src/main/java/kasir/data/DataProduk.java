@@ -1,4 +1,3 @@
-// File: src/main/java/kasir/data/DataProduk.java
 package kasir.data;
 
 import javafx.collections.FXCollections;

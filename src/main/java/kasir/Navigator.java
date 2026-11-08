@@ -1,4 +1,3 @@
-// File: src/main/java/kasir/Navigator.java
 package kasir;
 
 import java.io.IOException;

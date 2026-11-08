@@ -5,6 +5,8 @@
     <groupId>latihan-kasir</groupId>
     <artifactId>AplikasiKasir</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>17</maven.compiler.source>
@@ -18,17 +20,20 @@
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-controls</artifactId>
-            <version>21</version>
+            <version>${javafx.version}</version>
         </dependency>
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-fxml</artifactId>
-            <version>21</version>
+            <version>${javafx.version}</version>
         </dependency>
     </dependencies>
 
     <build>
+        <finalName>${project.artifactId}-${project.version}</finalName>
         <plugins>
+
+            <!-- Plugin untuk mvn javafx:run sehari-hari (dipakai di NetBeans selama development) -->
             <plugin>
                 <groupId>org.openjfx</groupId>
                 <artifactId>javafx-maven-plugin</artifactId>
@@ -37,6 +42,58 @@
                     <mainClass>${exec.mainClass}</mainClass>
                 </configuration>
             </plugin>
+
+            <!-- Mengarahkan hasil jar ke folder khusus untuk jpackage -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                    <outputDirectory>${project.build.directory}/jpackage-input</outputDirectory>
+                    <archive>
+                        <manifest>
+                            <mainClass>kasir.Launcher</mainClass>
+                            <addClasspath>true</addClasspath>
+                            <classpathPrefix>dependency/</classpathPrefix>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+
+            <!-- Menyalin semua library JavaFX ke folder yang sama -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>copy-dependencies</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}/jpackage-input/dependency</outputDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- Membungkus semuanya jadi aplikasi .exe mandiri -->
+            <plugin>
+                <groupId>org.panteleyev</groupId>
+                <artifactId>jpackage-maven-plugin</artifactId>
+                <version>1.5.2</version>
+                <configuration>
+                    <name>AplikasiKasir</name>
+                    <appVersion>1.0.0</appVersion>
+                    <vendor>Latihan Pribadi</vendor>
+                    <destination>${project.build.directory}/installer</destination>
+                    <input>${project.build.directory}/jpackage-input</input>
+                    <mainJar>${project.build.finalName}.jar</mainJar>
+                    <mainClass>kasir.Launcher</mainClass>
+                    <type>APP_IMAGE</type>
+                </configuration>
+            </plugin>
+
         </plugins>
     </build>
 </project>

@@ -12,7 +12,6 @@ public class MainApp extends Application {
         DataProduk dataProduk = new DataProduk();
         Keranjang keranjang = new Keranjang();
 
-        // Data contoh supaya langsung bisa dicoba — boleh dihapus.
         dataProduk.tambah("Mie Ayam Original", 8_000, 20);
         dataProduk.tambah("Mie Ayam Baso", 10_000, 30);
         dataProduk.tambah("Mie Ayam ceker", 10_000, 30);
