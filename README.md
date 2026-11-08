@@ -2,6 +2,10 @@
 
 Aplikasi kasir sederhana berbasis JavaFX untuk latihan pemrograman GUI Java, menggunakan pola MVC + Navigator.
 
+## Tampilan
+
+![Tampilan halaman Kasir](kasir.png)
+
 ## Fitur
 - Tambah produk ke keranjang belanja dengan validasi stok
 - Total belanja otomatis, termasuk penggabungan baris produk yang sama
@@ -15,14 +19,20 @@ Aplikasi kasir sederhana berbasis JavaFX untuk latihan pemrograman GUI Java, men
 - FXML + CSS untuk tampilan
 
 ## Cara Menjalankan
+
+### Opsi 1: Dari source code (butuh JDK 17 + Maven)
 1. Clone repository ini.
 2. Buka project di NetBeans (atau IDE lain yang mendukung Maven).
-3. Jalankan lewat goal Maven `javafx:run`:
-   Atau di NetBeans: klik kanan `pom.xml` > Run Maven > Other Goals... > ketik `clean javafx:run`.
+3. Jalankan lewat goal Maven `javafx:run`: mvn clean javafx:run Atau di NetBeans: klik kanan `pom.xml` > Run Maven > Other Goals... > ketik `clean javafx:run`.
+
+### Opsi 2: Aplikasi siap pakai (tanpa perlu install Java)
+1. Build jadi executable mandiri: mvn clean package jpackage:jpackage
+2. Buka folder `target/installer/AplikasiKasir/`, jalankan `AplikasiKasir.exe`.
 
 ## Struktur Project
 src/main/java/kasir/
 MainApp.java
+Launcher.java
 Navigator.java
 model/ -> Produk, ItemKeranjang
 data/ -> DataProduk, Keranjang
