@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<BorderPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="kasir.controller.PembayaranController"
+            stylesheets="@styles/app.css">
+    <top>
+        <HBox spacing="16" styleClass="header">
+            <Label text="Pembayaran" styleClass="title"/>
+        </HBox>
+    </top>
+    <center>
+        <ScrollPane fitToWidth="true">
+            <content>
+                <VBox spacing="16" styleClass="page">
+
+                    <VBox spacing="12" styleClass="card">
+                        <Label text="Struk belanja" styleClass="subtitle"/>
+                        <TableView fx:id="tabelStruk" prefHeight="200">
+                            <columns>
+                                <TableColumn fx:id="namaCol" text="Produk" prefWidth="220"/>
+                                <TableColumn fx:id="jumlahCol" text="Jumlah" prefWidth="90"/>
+                                <TableColumn fx:id="subtotalCol" text="Subtotal (Rp)" prefWidth="150"/>
+                            </columns>
+                        </TableView>
+                    </VBox>
+
+                    <VBox spacing="10" styleClass="total-box">
+                        <Label text="Total Belanja" styleClass="muted"/>
+                        <Label fx:id="totalLabel" styleClass="total-value"/>
+                    </VBox>
+
+                    <VBox spacing="12" styleClass="card">
+                        <Label text="Uang dibayar (Rp)"/>
+                        <TextField fx:id="bayarField" promptText="Contoh: 50000" onAction="#proses"/>
+                        <Button text="Proses Pembayaran" onAction="#proses"
+                                styleClass="button-primary" maxWidth="Infinity"/>
+                        <Label text="Kembalian" styleClass="muted"/>
+                        <Label fx:id="kembalianLabel" styleClass="title"/>
+                        <Label fx:id="pesanLabel" wrapText="true" styleClass="error"/>
+                        <Button text="Transaksi Baru" onAction="#transaksiBaru"/>
+                    </VBox>
+
+                </VBox>
+            </content>
+        </ScrollPane>
+    </center>
+</BorderPane>

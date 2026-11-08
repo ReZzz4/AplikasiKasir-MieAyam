@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<BorderPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="kasir.controller.KasirController"
+            stylesheets="@styles/app.css">
+    <top>
+        <HBox spacing="16" styleClass="header">
+            <Label text="Kasir" styleClass="title"/>
+            <Button text="Kelola Produk" onAction="#bukaKelolaProduk"/>
+        </HBox>
+    </top>
+    <center>
+        <ScrollPane fitToWidth="true">
+            <content>
+                <VBox spacing="16" styleClass="page">
+
+                    <VBox spacing="12" styleClass="card">
+                        <Label text="Tambah produk ke keranjang" styleClass="subtitle"/>
+                        <Label text="Pilih produk"/>
+                        <ComboBox fx:id="produkBox" maxWidth="Infinity"/>
+                        <Label text="Jumlah"/>
+                        <TextField fx:id="jumlahField" promptText="Contoh: 2"
+                                   onAction="#tambahKeKeranjang"/>
+                        <Button text="Tambah ke Keranjang" onAction="#tambahKeKeranjang"
+                                styleClass="button-primary" maxWidth="Infinity"/>
+                        <Label fx:id="pesanLabel" wrapText="true" styleClass="error"/>
+                    </VBox>
+
+                    <VBox spacing="12" styleClass="card">
+                        <Label text="Keranjang belanja" styleClass="subtitle"/>
+                        <TableView fx:id="tabelKeranjang" prefHeight="220">
+                            <columns>
+                                <TableColumn fx:id="namaCol" text="Produk" prefWidth="220"/>
+                                <TableColumn fx:id="hargaCol" text="Harga (Rp)" prefWidth="130"/>
+                                <TableColumn fx:id="jumlahCol" text="Jumlah" prefWidth="90"/>
+                                <TableColumn fx:id="subtotalCol" text="Subtotal (Rp)" prefWidth="150"/>
+                            </columns>
+                        </TableView>
+                        <Button text="Hapus Item Terpilih" onAction="#hapusItem"/>
+                    </VBox>
+
+                    <VBox spacing="10" styleClass="total-box">
+                        <Label text="Total Belanja" styleClass="muted"/>
+                        <Label fx:id="totalLabel" styleClass="total-value"/>
+                        <Button text="Bayar" onAction="#bayar"
+                                styleClass="button-primary" maxWidth="Infinity"/>
+                    </VBox>
+
+                </VBox>
+            </content>
+        </ScrollPane>
+    </center>
+</BorderPane>

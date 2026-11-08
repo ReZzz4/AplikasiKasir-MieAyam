@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<BorderPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="kasir.controller.ProdukController"
+            stylesheets="@styles/app.css">
+    <top>
+        <HBox spacing="16" styleClass="header">
+            <Label text="Kelola Produk" styleClass="title"/>
+            <Button text="Kembali ke Kasir" onAction="#bukaKasir"/>
+        </HBox>
+    </top>
+    <center>
+        <ScrollPane fitToWidth="true">
+            <content>
+                <VBox spacing="16" styleClass="page">
+
+                    <VBox spacing="12" styleClass="card">
+                        <Label text="Tambah produk baru" styleClass="subtitle"/>
+                        <Label text="Nama produk"/>
+                        <TextField fx:id="namaField" promptText="Contoh: Mie Goreng"/>
+                        <Label text="Harga (Rp)"/>
+                        <TextField fx:id="hargaField" promptText="Contoh: 10000"/>
+                        <Label text="Stok"/>
+                        <TextField fx:id="stokField" promptText="Contoh: 20"/>
+                        <Button text="Tambah Produk" onAction="#tambah"
+                                styleClass="button-primary" maxWidth="Infinity"/>
+                        <Label fx:id="pesanLabel" wrapText="true" styleClass="error"/>
+                    </VBox>
+
+                    <VBox spacing="12" styleClass="card">
+                        <Label text="Daftar produk" styleClass="subtitle"/>
+                        <TableView fx:id="tabel" prefHeight="260">
+                            <columns>
+                                <TableColumn fx:id="kodeCol" text="Kode" prefWidth="90"/>
+                                <TableColumn fx:id="namaCol" text="Nama" prefWidth="220"/>
+                                <TableColumn fx:id="hargaCol" text="Harga (Rp)" prefWidth="130"/>
+                                <TableColumn fx:id="stokCol" text="Stok" prefWidth="90"/>
+                            </columns>
+                        </TableView>
+                        <Button text="Hapus Produk Terpilih" onAction="#hapus"/>
+                    </VBox>
+
+                </VBox>
+            </content>
+        </ScrollPane>
+    </center>
+</BorderPane>
